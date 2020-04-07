@@ -14,7 +14,7 @@ TOGGLE=$HOME/.tabletmode
 # TODO: fix polybar config
 if [ ! -e $TOGGLE ]; then  # Deactivate tablet mode
     touch $TOGGLE
-    bash $HOME/bin/rotate_desktop.sh normal
+    bash $HOME/bin/for_robots/rotate_desktop.sh normal
     # polybar-msg cmd hide
     i3-msg restart
     feh --bg-scale /home/whillikers/media/img/wallpapers/ssss-ocean.jpg
@@ -22,7 +22,7 @@ if [ ! -e $TOGGLE ]; then  # Deactivate tablet mode
     nohup polybar --config=/home/whillikers/.config/polybar/nordic nordic_main &> /dev/null &
 else
     rm $TOGGLE  # Activate tablet mode
-    bash $HOME/bin/rotate_desktop.sh left
+    bash $HOME/bin/for_robots/rotate_desktop.sh left
     # polybar-msg cmd show
     # polybar-msg action menu-open-0
     i3-msg restart
