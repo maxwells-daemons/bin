@@ -13,23 +13,12 @@ do
     fi
 done
 
-echo $dp1 > ${HOME}/.leftmonitor
-echo $dp2 > ${HOME}/.rightmonitor
+echo $dp1 > $HOME/.leftmonitor
+echo $dp2 > $HOME/.rightmonitor
 
 xrandr --output $dp1 --primary --mode 3840x2160 --pos 0x1400 --rotate normal \
        --output $dp2 --mode 3840x2160 --pos 3840x0 --rotate right \
        --output eDP-1-1 --off --output HDMI1 --off --output HDMI2 --off
 
-xmodmap ${HOME}/.Xmodmap
+xmodmap $HOME/.Xmodmap
 i3-msg restart
-feh --bg-scale ${HOME}/media/img/wallpapers/ssss-main.jpg \
-    ${HOME}/media/img/wallpapers/ssss-bridge-thin.jpg
-compton --config ${HOME}/.config/compton.conf -b
-
-# See: https://stackoverflow.com/questions/3510673/
-#      find-and-kill-a-process-in-one-line-using-bash-and-regex
-kill $(ps aux | grep '[p]olybar*' | awk '{print $2}')
-nohup polybar --config=${HOME}/.config/polybar/gigavolt gigavolt_horizmonitor &> /dev/null &
-nohup polybar --config=${HOME}/.config/polybar/gigavolt gigavolt_vertmonitor &> /dev/null &
-
-# TODO: fix config locations
