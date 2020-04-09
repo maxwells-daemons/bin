@@ -11,22 +11,21 @@
 TOGGLE=$HOME/.tabletmode
 
 
-# TODO: fix polybar config
 if [ ! -e $TOGGLE ]; then  # Deactivate tablet mode
     touch $TOGGLE
     bash $HOME/bin/for_robots/rotate_desktop.sh normal
     # polybar-msg cmd hide
     i3-msg restart
-    feh --bg-scale /home/whillikers/media/img/wallpapers/ssss-ocean.jpg
+    feh --bg-scale $HOME/media/img/wallpapers/ssss-ocean.jpg
     kill $(ps aux | grep '[p]olybar*' | awk '{print $2}')
-    nohup polybar --config=/home/whillikers/.config/polybar/nordic nordic_main &> /dev/null &
+    nohup polybar --config=$XDG_CONFIG_HOME/polybar/config main &> /dev/null &
 else
     rm $TOGGLE  # Activate tablet mode
     bash $HOME/bin/for_robots/rotate_desktop.sh left
     # polybar-msg cmd show
     # polybar-msg action menu-open-0
     i3-msg restart
-    feh --bg-scale  /home/whillikers/media/img/wallpapers/ssss-bridge-thin.jpg
+    feh --bg-scale  $HOME/media/img/wallpapers/ssss-bridge-thin.jpg
     kill $(ps aux | grep '[p]olybar*' | awk '{print $2}')
-    nohup polybar --config=/home/whillikers/.config/polybar/nordic nordic_short &> /dev/null &
+    nohup polybar --config=$XDG_CONFIG_HOME/polybar/config short &> /dev/null &
 fi
