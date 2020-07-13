@@ -7,9 +7,9 @@ shopt -s extglob
 for out in "${outs[@]}"
 do
     if [[ $out = DP-0* ]]
-    then dp2=$out
-    elif [[ $out = DP-* ]]
     then dp1=$out
+    elif [[ $out = DP-* ]]
+    then dp2=$out
     fi
 done
 
