@@ -8,7 +8,7 @@ import subprocess
     "-f",
     "--settings-file",
     type=click.Path(exists=True, dir_okay=False),
-    default="~/dotfiles/dotfiles/webcam-settings.txt",
+    default="/home/whillikers/dotfiles/dotfiles/webcam-settings.txt",
 )
 @click.option(
     "-d",
