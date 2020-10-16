@@ -1,21 +1,9 @@
 #!/bin/python3
-import click
+import argparse
 import subprocess
+import os
 
 
-@click.command()
-@click.option(
-    "-f",
-    "--settings-file",
-    type=click.Path(exists=True, dir_okay=False),
-    default="/home/whillikers/dotfiles/dotfiles/webcam-settings.txt",
-)
-@click.option(
-    "-d",
-    "--device",
-    type=click.Path(exists=True, dir_okay=False),
-    default="/dev/video0",
-)
 def main(settings_file: str, device: str):
     with open(settings_file, "r") as f:
         setting_lines = f.readlines()
@@ -28,5 +16,13 @@ def main(settings_file: str, device: str):
         subprocess.run(["v4l2-ctl", "-d", device, f"--set-ctrl={name}={value}"])
 
 
+def cli():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-f", default=os.path.expanduser("~/.dotfiles/dotfiles/webcam-settings.txt"))
+    parser.add_argument("-d", default="/dev/video0")
+    args = parser.parse_args()
+    main(args.f, args.d)
+
+
 if __name__ == "__main__":
-    main()
+    cli()
