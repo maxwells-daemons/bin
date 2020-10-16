@@ -18,7 +18,7 @@ def main(settings_file: str, device: str):
 
 def cli():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-f", default=os.path.expanduser("~/.dotfiles/dotfiles/webcam-settings.txt"))
+    parser.add_argument("-f", default=os.path.expanduser("~/.dotfiles/other/webcam-settings.txt"))
     parser.add_argument("-d", default="/dev/video0")
     args = parser.parse_args()
     main(args.f, args.d)
