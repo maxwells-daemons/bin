@@ -6,11 +6,11 @@ yay -Syu
 echo
 
 echo "Updating Python packages in tools environment..."
-PYTHON_TOOLS_PIP="${XDG_DATA_HOME}/pyenv/versions/tools/bin/python -m pip"
-PYTHON_TOOLS_OUTDATED=$($PYTHON_TOOLS_PIP list --outdated --format freeze | sed 's/==/>=/')
-$PYTHON_TOOLS_PIP install --upgrade pip
+TOOLS_PYTHON="${XDG_DATA_HOME}/pyenv/versions/tools/bin/python"
+PYTHON_TOOLS_OUTDATED=$($TOOLS_PYTHON -m pip list --outdated --format freeze | sed 's/==/>=/')
+$TOOLS_PYTHON -m pip install --upgrade pip
 if [ ! -z $PYTHON_TOOLS_OUTDATED ]; then
-    $PYTHON_TOOLS_PIP install --upgrade $PYTHON_TOOLS_OUTDATED
+    $TOOLS_PYTHON -m pip install --upgrade $PYTHON_TOOLS_OUTDATED
 fi
 echo
 
